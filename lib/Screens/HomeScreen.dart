@@ -1,3 +1,5 @@
+import 'package:audiobook/Screens/AboutBook.dart';
+import 'package:audiobook/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -36,162 +40,58 @@ class _HomeState extends State<Home> {
                 ],
               ),
               SizedBox(height: 50),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 500,
-                      width: 300,
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 10, left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/a2.png'),
-                          fit: BoxFit.cover,
+              Container(
+                height: 500,
+                child: ListView.builder(itemCount: AudioBook_Data.length,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.all(10),
+                  itemBuilder: (context, index){
+                  return Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioBookInfo(imgPath: AudioBook_Data[index]["imgPath"],bookName: AudioBook_Data[index]["bookName"],)));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(200),
+                            bottomRight: Radius.circular(200)),
+                        child: Container(
+                          color: Colors.white,
+                          height: 500,
+                          width: 300,
+                          padding: EdgeInsets.only(
+                              top: 10, bottom: 10, left: 10, right: 10),
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              Image.asset(
+                               AudioBook_Data[index]["imgPath"],
+                                height: 300,
+                              ),
+                              SizedBox(height: 30),
+                              Text(
+                                AudioBook_Data[index]["bookName"],
+                                style: TextStyle(color: Colors.black, fontSize: 20),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Icon(
+                                Icons.play_circle_outline,
+                                color: Colors.black,
+                                size: 60,
+                              ),
+                            ],
+                          ),
                         ),
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(200),
-                            bottomRight: Radius.circular(200)),
-                      ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/1.jpg',
-                            height: 300,
-                          ),
-                          SizedBox(height: 30),
-                          Text(
-                            'Wings of Fire',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(
-                            Icons.play_circle_outline,
-                            color: Colors.black,
-                            size: 60,
-                          ),
-                        ],
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Container(
-                      height: 500,
-                      width: 300,
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 10, left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(200),
-                            bottomRight: Radius.circular(200)),
-                      ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/2.png',
-                            height: 300,
-                          ),
-                          SizedBox(height: 30),
-                          Text(
-                            'Sail',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(
-                            Icons.play_circle_outline,
-                            color: Colors.black,
-                            size: 60,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Container(
-                      height: 500,
-                      width: 300,
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 10, left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(200),
-                            bottomRight: Radius.circular(200)),
-                      ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/3.jpg',
-                            height: 300,
-                          ),
-                          SizedBox(height: 30),
-                          Text(
-                            'The Alchemist',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(
-                            Icons.play_circle_outline,
-                            color: Colors.black,
-                            size: 60,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Container(
-                      height: 500,
-                      width: 300,
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 10, left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(200),
-                            bottomRight: Radius.circular(200)),
-                      ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/4.jpg',
-                            height: 300,
-                          ),
-                          SizedBox(height: 30),
-                          Text(
-                            'Fifty Shades of Grey',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(
-                            Icons.play_circle_outline,
-                            color: Colors.black,
-                            size: 60,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  );
+                  }
                 ),
               ),
+
             ],
           ),
         ),
